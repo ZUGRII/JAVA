@@ -1,0 +1,126 @@
+---------------------------Object Oriented Programming----------------------------
+Susan McKeever
+- lab attendance
+- 50% s1
+- 50% s2
+	o labs 40%
+	o assignment 60%
+	- no late submisions
+- over 40% in exam
+- no tutorial tomorrow morning
+
+
+
+public class Student
+{
+	//attributes
+	studentID;
+	year;
+	courseCode;
+
+	//methods
+
+	changeYear(){}
+
+	registerStudent() public {}
+}
+object 
+-to create an object/instantiating objects in java:
+  Student s1 = new Student(attributes); 
+
+
+
+
+/******************************
+*
+* 
+*
+***********************************/
+
+
+public class Control
+{
+	public static void main (String args[])
+	{ 
+		//to create a person
+
+		Person p2 = new Person ("Sean", "Kelly", 23, "10 West road"); //calls the constructor
+		System.out.println(p2.toString());  //always, object.method that want to call
+
+		Person p3 = new Person ( "Sean", "Kelly");
+	}
+}//end Control
+
+public class Person
+{
+	//attributes of a person
+	private String firstName;
+	private String surName;
+	private int age;
+	private String address;
+
+	//constructor (note.. always must be same name as the class)
+	public Person (String firstName, String surName, int age, String address)
+	{
+		this.firstName = firstName // i.e. move the incoming firstname into the attribute
+		this.surName = surName;
+		this.age = age;
+		this.address = address;	
+	}
+	
+	public Person (String firstName, String surName)
+	{
+		this.firstName = firstName // i.e. move the incoming firstname into the attribute
+		this.surName = surName;
+	}
+
+	// return type(String), methname(toString)
+	public String toString()
+	{
+		//by convention toString returnts the objects value (i.e. the attributes values)
+		
+		return String personDetails = "This person's is " + firstName + " " + surName +
+		"and their age is " + age
+		
+		//or return personDetails;
+		
+	}
+
+}//end class
+
+
+////////////////////////////////different classes ///////////////////////////////////
+
+public class Patient
+{
+	//attributes
+	private String Name;
+	private String ID;
+	private int registrationNumber;
+	private int age;
+
+	//Constructor
+	public Partient(String Name, String ID, int age)
+	{
+		this.Name = Name;
+		this.ID = ID;
+		this.age = age;
+	}
+	
+}//end class
+
+class Control
+{
+	//main menu
+	public static void main (String args[])
+	{
+		Patient p1 = new Patient("Sean Kelly", "C18678", 26);
+	}
+}//end Control
+
+eg: package com.test.lab
+
+
+
+
+
