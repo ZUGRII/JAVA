@@ -1,7 +1,5 @@
 package com.inclass;
 
-import java.util.Scanner;
-
 public class Control {
 
 	public static void main(String[] args) {

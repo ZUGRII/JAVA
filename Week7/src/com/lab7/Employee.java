@@ -18,7 +18,7 @@ public class Employee extends Person {
 		this.job = job;
 		this.personnelNumber = getNextNumber();
 		this.startDate = startDate;
-		setNextNumber(getNextNumber() +1);
+		nextNumber++;
 	}//end constructor
 	
 	//GETTERS and SETTERS
@@ -51,7 +51,7 @@ public class Employee extends Person {
 		return nextNumber;
 	}
 	public void setNextNumber(int nextNumber) {
-		this.nextNumber = nextNumber;
+		Employee.nextNumber = nextNumber;
 	}
 	
 	
