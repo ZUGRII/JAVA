@@ -16,7 +16,9 @@ public class Control {
 
 	public static void main(String[] args) {
 		FileManager myFile = new FileManager("MLdata.txt");
-		//System.out.println(myFile);
+		myFile.connectToFile();
+		
+		System.out.println(myFile.readFile());
 
 	}
 

@@ -2,6 +2,7 @@ package com.assignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileManager {
@@ -26,31 +27,18 @@ public class FileManager {
 
 	@SuppressWarnings("finally")
 	// Read the file, returning a string of lines
-    String[] readFile()
+    ArrayList<Data> readFile()
     {
     
-    	String[] values = new String[76];
-    	String[] temperature	= new String[76];
-    	String[] aches 			= new String[76];
-    	String[] cough 			= new String[76];
-    	String[] sore_throat 	= new String[76];
-    	String[] danger_zone 	= new String[76];
-    	String[] has_covid19	= new String[76];
+    	ArrayList<Data> values = new ArrayList<Data>(100);
+    	
     	
 	    try
 		{
-	    	int i = 0;
 	    	scan = new Scanner(fileExample); 
 			 while (scan.hasNextLine())
 			    {
-			      
-				 temperature[i] = scan.next();
-				 aches[i] 		= scan.next();
-				 cough[i] 		= scan.next();
-				 sore_throat[i] = scan.next();
-				 danger_zone[i] = scan.next();
-				 has_covid19[i] = scan.next();
-			      i++;
+				 values.add(new Data(scan.next(), scan.next(), scan.next(), scan.next(), scan.next()));
 			    }
 		}
 		catch (FileNotFoundException e)
@@ -59,7 +47,7 @@ public class FileManager {
 		}
 	    finally
 	    {
-	    	System.out.println(danger_zone);
+	    	System.out.println(values);
 	        return values;
 	    }
     }
