@@ -17,9 +17,11 @@ public class Control {
 	public static void main(String[] args) {
 		FileManager myFile = new FileManager("MLdata.txt");
 		myFile.connectToFile();
+		myFile.readFile();
+		Data input = new Data("normal", "no", "yes", "yes", "no");
+		NaiveBayes data = new NaiveBayes(input);
 		
-		System.out.println(myFile.readFile());
-
+		
 	}
 
 }

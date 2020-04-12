@@ -25,9 +25,10 @@ public class FileManager {
 		fileExample = new File(fileName);
 	}
 
-	@SuppressWarnings("finally")
+	
 	// Read the file, returning a string of lines
-    ArrayList<Data> readFile()
+    @SuppressWarnings("finally")
+	ArrayList<Data> readFile()
     {
     
     	ArrayList<Data> values = new ArrayList<Data>(100);
@@ -38,7 +39,7 @@ public class FileManager {
 	    	scan = new Scanner(fileExample); 
 			 while (scan.hasNextLine())
 			    {
-				 values.add(new Data(scan.next(), scan.next(), scan.next(), scan.next(), scan.next()));
+				 values.add(new Data(scan.next(), scan.next(), scan.next(), scan.next(), scan.next(), scan.next()));
 			    }
 		}
 		catch (FileNotFoundException e)
@@ -47,7 +48,13 @@ public class FileManager {
 		}
 	    finally
 	    {
-	    	System.out.println(values);
+	        System.out.println("Using For Loop\n ");
+		      for (int i = 0; i < values.size();i++) 
+		      { 		      
+		          System.out.println(i + ". "+ values.get(i));
+		          //System.out.println("Temp: "+ values.get(i).temperature);
+		          
+		      }  
 	        return values;
 	    }
     }
