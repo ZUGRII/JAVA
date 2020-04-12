@@ -6,13 +6,16 @@ public class NaiveBayes {
 	
 	//attributes
 	Data input;
+	ArrayList<Data> values;
 	
 	//Constructor
 	public NaiveBayes(Data input) {
 		this.input = input;
+		values = new ArrayList<Data>(100);
+		FileManager myFile = new FileManager("MLdata.txt");
+		myFile.connectToFile();
+		values = myFile.readFile();
 	}
-	
-	ArrayList<Data> values = new ArrayList<Data>(100);
 	
 	
 	//Calculate has_covid19 (Yes) probability
@@ -21,73 +24,95 @@ public class NaiveBayes {
 		double yesTotal = 0;
 		for (int i = 0; i < values.size();i++) 
 	      { 
-			 if (values.get(i).hasCovid19 == "yes")
+			 if (values.get(i).hasCovid19.equals("yes"))
 				 yesTotal++;
 	      }
-		
-		return yesTotal / (double)values.size();
+		return yesTotal /values.size();
 		
 	}
 	
 	//////Calculate data ////
-	//Calculate temperature probability
-	double temperatureProbability ()
+	double dataProbability()
 	{
-		double tempTotal = 0;
+		double temp = 0;
+		double aches = 0;
+		double cough = 0;
+		double soreT = 0;
+		double dangerZ = 0;
+		
 		for (int i = 0; i< values.size(); i++)
 		{
-			if(values.get(i).temperature == input.temperature)
+			if(values.get(i).temperature.equals(input.temperature))
 			{
-				tempTotal++;
+				temp++;
+			}
+			if(values.get(i).aches.equals(input.aches))
+			{
+				aches++;
+			}
+			if(values.get(i).cough.equals(input.cough))
+			{
+				cough++;
+			}
+			if(values.get(i).soreThroat.equals(input.soreThroat))
+			{
+				soreT++;
+			}
+			if(values.get(i).dangerZone.equals(input.dangerZone))
+			{
+				dangerZ++;
 			}
 		}
-		return tempTotal / (double)values.size();
+		return (temp/values.size())*(aches/values.size())*(cough/values.size())*(soreT/values.size())*(dangerZ/values.size());
+		
 	}
 	
-	//Calculate aches probability
-	double achesProbability()
+	
+	
+	//////Calculate for each if covid19 = yes
+	double ifyesProbability()
 	{
-		double achesTotal = 0;
+		double temp = 0;
+		double aches = 0;
+		double cough = 0;
+		double soreT = 0;
+		double dangerZ = 0;
+		double yesTotal = 0;
+		
 		for (int i = 0; i< values.size(); i++)
 		{
-			if(values.get(i).aches == input.aches)
+			if(values.get(i).hasCovid19.equals("yes"))
 			{
-				achesTotal++;
+				yesTotal++;
+				if(values.get(i).temperature.equals(input.temperature))
+				{
+					temp++;
+				}
+				if(values.get(i).aches.equals(input.aches))
+				{
+					aches++;
+				}
+				if(values.get(i).cough.equals(input.cough))
+				{
+					cough++;
+				}
+				if(values.get(i).soreThroat.equals(input.soreThroat))
+				{
+					soreT++;
+				}
+				if(values.get(i).dangerZone.equals(input.dangerZone))
+				{
+					dangerZ++;
+				}	
 			}
 		}
-		return achesTotal / (double)values.size();
+		return (temp/yesTotal)*(aches/yesTotal)*(cough/yesTotal)*(soreT/yesTotal)*(dangerZ/yesTotal);
 	}
 	
-	//Calculate soreThroat probability
-	double soreThroatProbability()
+	//calculate all
+	double calculateAll()
 	{
-		double soreThroatTotal = 0;
-		for (int i = 0; i< values.size(); i++)
-		{
-			if(values.get(i).soreThroat == input.soreThroat)
-			{
-				soreThroatTotal++;
-			}
-		}
-		return soreThroatTotal / (double)values.size();
+		return ifyesProbability()*+yesProbability()/dataProbability();
 	}
-	
-	//calculate dangerZone
-	double dangerZoneProbability()
-	{
-		double dangerZoneTotal = 0;
-		for (int i = 0; i< values.size(); i++)
-		{
-			if(values.get(i).dangerZone == input.dangerZone)
-			{
-				dangerZoneTotal++;
-			}
-		}
-		return dangerZoneTotal / (double)values.size();
-	}
-	
-	///
-	
-	
 
 }

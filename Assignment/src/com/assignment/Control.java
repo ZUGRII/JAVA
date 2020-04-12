@@ -15,12 +15,9 @@ package com.assignment;
 public class Control {
 
 	public static void main(String[] args) {
-		FileManager myFile = new FileManager("MLdata.txt");
-		myFile.connectToFile();
-		myFile.readFile();
-		Data input = new Data("normal", "no", "yes", "yes", "no");
+		Data input = new Data("normal", "no", "yes", "no", "yes");
 		NaiveBayes data = new NaiveBayes(input);
-		
+		System.out.println(data.calculateAll());
 		
 	}
 
