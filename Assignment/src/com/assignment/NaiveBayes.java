@@ -27,6 +27,8 @@ public class NaiveBayes {
 			 if (values.get(i).hasCovid19.equals("yes"))
 				 yesTotal++;
 	      }
+		System.out.println("YES Probability: " + yesTotal+ "/"+ values.size() );
+		System.out.println("YES Probability: "+ yesTotal /values.size());
 		return yesTotal /values.size();
 		
 	}
@@ -63,6 +65,9 @@ public class NaiveBayes {
 				dangerZ++;
 			}
 		}
+		System.out.println("DAta Probality: ("+temp +"/"+values.size()+ ")*(" +aches+ "/"+values.size()+
+				")*("+cough+"/"+values.size()+")*("+soreT+"/"+values.size()+")*("+dangerZ+"/"+values.size()+")");
+		System.out.println("DATa Probability: "+ (temp/values.size())*(aches/values.size())*(cough/values.size())*(soreT/values.size())*(dangerZ/values.size()));
 		return (temp/values.size())*(aches/values.size())*(cough/values.size())*(soreT/values.size())*(dangerZ/values.size());
 		
 	}
@@ -106,13 +111,16 @@ public class NaiveBayes {
 				}	
 			}
 		}
-		return (temp/yesTotal)*(aches/yesTotal)*(cough/yesTotal)*(soreT/yesTotal)*(dangerZ/yesTotal);
+		System.out.println("IF YES DAta Probality: ("+temp +"/"+yesTotal+ ")*(" +aches+ "/"+yesTotal+
+				")*("+cough+"/"+yesTotal+")*("+soreT+"/"+yesTotal+")*("+dangerZ+"/"+yesTotal+")");
+		System.out.println("IF YES Data probalility: "+ (aches/yesTotal)*(cough/yesTotal)*(soreT/yesTotal)*(dangerZ/yesTotal) );
+		return ((temp/yesTotal)+1)*(aches/yesTotal)*(cough/yesTotal)*(soreT/yesTotal)*(dangerZ/yesTotal);
 	}
 	
 	//calculate all
 	double calculateAll()
 	{
-		return ifyesProbability()*+yesProbability()/dataProbability();
+		return (ifyesProbability()*yesProbability())/dataProbability();
 	}
 
 }

@@ -15,7 +15,7 @@ package com.assignment;
 public class Control {
 
 	public static void main(String[] args) {
-		Data input = new Data("normal", "no", "yes", "no", "yes");
+		Data input = new Data("cold", "no", "no", "no", "no");
 		NaiveBayes data = new NaiveBayes(input);
 		System.out.println(data.calculateAll());
 		

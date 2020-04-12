@@ -48,13 +48,7 @@ public class FileManager {
 		}
 	    finally
 	    {
-	        System.out.println("Using For Loop\n ");
-		      for (int i = 0; i < values.size();i++) 
-		      { 		      
-		          System.out.println(i + ". "+ values.get(i));
-		          //System.out.println("Temp: "+ values.get(i).temperature);
-		          
-		      }  
+	      
 	        return values;
 	    }
     }
