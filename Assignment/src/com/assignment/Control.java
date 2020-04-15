@@ -15,10 +15,10 @@ package com.assignment;
 public class Control {
 
 	public static void main(String[] args) {
-		Data input = new Data("cold", "no", "no", "no", "no");
+		Data input = new Data("hot", "no", "yes", "yes", "yes");
 		NaiveBayes data = new NaiveBayes(input);
 		System.out.println(data.calculateAll());
-		
+		                    
 	}
 
 }

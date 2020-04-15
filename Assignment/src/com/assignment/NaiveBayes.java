@@ -19,12 +19,12 @@ public class NaiveBayes {
 	
 	
 	//Calculate has_covid19 (Yes) probability
-	double yesProbability()
+	double yesOrNoProbability(String yesOrNo)
 	{
 		double yesTotal = 0;
 		for (int i = 0; i < values.size();i++) 
 	      { 
-			 if (values.get(i).hasCovid19.equals("yes"))
+			 if (values.get(i).hasCovid19.equals(yesOrNo))
 				 yesTotal++;
 	      }
 		System.out.println("YES Probability: " + yesTotal+ "/"+ values.size() );
@@ -75,7 +75,7 @@ public class NaiveBayes {
 	
 	
 	//////Calculate for each if covid19 = yes
-	double ifyesProbability()
+	double probability(String yesOrNo)
 	{
 		double temp = 0;
 		double aches = 0;
@@ -86,7 +86,7 @@ public class NaiveBayes {
 		
 		for (int i = 0; i< values.size(); i++)
 		{
-			if(values.get(i).hasCovid19.equals("yes"))
+			if(values.get(i).hasCovid19.equals(yesOrNo))
 			{
 				yesTotal++;
 				if(values.get(i).temperature.equals(input.temperature))
@@ -120,7 +120,7 @@ public class NaiveBayes {
 	//calculate all
 	double calculateAll()
 	{
-		return (ifyesProbability()*yesProbability())/dataProbability();
+		return  probability("yes")*yesOrNoProbability("yes")/((probability("yes")*yesOrNoProbability("yes"))+(probability("no")*yesOrNoProbability("no")));
 	}
 
 }
