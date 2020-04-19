@@ -3,12 +3,12 @@ package com.assignment;
 public class Data {
 	
 	//attributes
-	String temperature;		// cold, cool, normal, hot
-	String aches ;			// yes / no
-	String cough;			// yes / no
-	String soreThroat;		// yes / no
-	String dangerZone;		// yes / no
-	String hasCovid19;		// yes / no
+	private String temperature;		// cold, cool, normal, hot
+	private String aches ;			// yes / no
+	private String cough;			// yes / no
+	private String soreThroat;		// yes / no
+	private String dangerZone;		// yes / no
+	private String hasCovid19;		// yes / no
 	
 	//Constructor1
 	public Data(String temperature, String aches, String cough, String soreThroat, String dangerZone,
@@ -39,6 +39,7 @@ public class Data {
 				+ soreThroat + ", danger_zone=" + dangerZone + ", has_covid19=" + hasCovid19 + "]";
 	}
 
+	//GETTERS and SETTERS
 	public String getTemperature() {
 		return temperature;
 	}
@@ -76,7 +77,4 @@ public class Data {
 		this.hasCovid19 = hasCovid19;
 	}
 
-	
-	
-
-}
+}//end Data class
