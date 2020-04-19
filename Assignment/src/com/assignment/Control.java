@@ -15,11 +15,9 @@ package com.assignment;
 public class Control {
 
 	public static void main(String[] args) {
-		/*Data input = new Data("hot", "yes", "no", "no", "no");
-		NaiveBayes data = new NaiveBayes(input);
-		System.out.println(data.calculateAll());*/
+	
 		Interface screen = new Interface("COVID19 TEST");
-		                    
+		TrainingTesting first = new TrainingTesting();                   
 	}
 
 }

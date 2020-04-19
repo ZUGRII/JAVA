@@ -17,7 +17,7 @@ public class Interface extends JFrame implements ActionListener {
 	//attributes
 	//JButton temperature;
 	String t, ac="no", c="no", sT="no", dZ="no";
-	JButton test; 
+	JButton test, testAccuracy; 
 	JCheckBox aches, cough, soreThroat, dangerZone;
 	JLabel welcome, temperature;
 	JPanel centrePanel, northPanel, southPanel, westPanel, eastPanel;
@@ -33,6 +33,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		//create the objects
 		test 		= new JButton("Test symptoms");
+		testAccuracy= new JButton("Test accuracy");
 		welcome		= new JLabel("Which of the following symptoms do you have?");
 		temperature	= new JLabel("Temperature:");
 		aches		= new JCheckBox("Aches");
@@ -61,6 +62,7 @@ public class Interface extends JFrame implements ActionListener {
 		dangerZone.addActionListener(this);
 		temp.addActionListener(this);
 		test.addActionListener(this);
+		testAccuracy.addActionListener(this);
 		
 		//add the objects to the panels
 		northPanel.add(welcome);
@@ -71,6 +73,7 @@ public class Interface extends JFrame implements ActionListener {
 		centrePanel.add(temperature);
 		centrePanel.add(temp);
 		southPanel.add(test);
+		southPanel.add(testAccuracy);
 		
 		add(eastPanel, BorderLayout.EAST);
 		add(westPanel, BorderLayout.WEST);
@@ -135,6 +138,10 @@ public class Interface extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "You have "+covid+"chances of having COVID-19");
 			System.out.println("You have "+covid+"chances of having COVID-19");
 			//System.out.println(data.toString());
+		}
+		if(event.getSource() == testAccuracy)
+		{
+			
 		}
 		
 	}
