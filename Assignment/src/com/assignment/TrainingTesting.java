@@ -19,7 +19,7 @@ public class TrainingTesting {
 	private ArrayList<Data> test;
 	private ArrayList<Integer> random;
 	
-	private String[] covid;
+	private String[] covid ;
 	private int accuracy = 0;
 	int i ;
 	
@@ -63,6 +63,7 @@ public class TrainingTesting {
 	
 	public double testAccuracy()
 	{
+		covid = new String[100];
 		//call NaiveBayes to calculate the prediction
 		for(i = 0; i<test.size(); i++ )
 		{
@@ -72,7 +73,7 @@ public class TrainingTesting {
 			if(Double.valueOf(data.calculateAll()) > 50){
 				 covid[i] = "yes";
 			}
-			else{
+			else {
 				 covid[i] = "no";
 			}
 		}//end for loop
