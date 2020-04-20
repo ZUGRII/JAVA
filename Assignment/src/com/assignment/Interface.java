@@ -1,3 +1,11 @@
+/* Interface Class 
+ * 
+ * Author: Georgiana Zugravu
+ * Student Number: C18768301
+ * Start date: 6th April 2020
+ * Due date: 20th April 2020
+ * Coordinator : Susan McKeever 
+ */
 package com.assignment;
 
 import java.awt.BorderLayout;
@@ -18,13 +26,12 @@ import javax.swing.JPanel;
 public class Interface extends JFrame implements ActionListener {
 	
 	//attributes
-	//JButton temperature;
-	String t="cold", ac="no", c="no", sT="no", dZ="no";
-	JButton test, testAccuracy; 
-	JCheckBox aches, cough, soreThroat, dangerZone;
-	JLabel welcome, temperature;
-	JPanel centrePanel, northPanel, southPanel, westPanel, eastPanel;
-	JComboBox<String> temp; 
+	private String t="cold", ac="no", c="no", sT="no", dZ="no";
+	private JButton test, testAccuracy; 
+	private JCheckBox aches, cough, soreThroat, dangerZone;
+	private JLabel welcome, temperature;
+	private JPanel centrePanel, northPanel, southPanel;
+	private JComboBox<String> temp; 
 	
 	DecimalFormat df = new DecimalFormat("#.##"); 
 	
@@ -45,7 +52,9 @@ public class Interface extends JFrame implements ActionListener {
 		cough		= new JCheckBox("Cough");
 		soreThroat	= new JCheckBox("Sore Throat");
 		dangerZone	= new JCheckBox("Danger Zone");
-		temp		 = new JComboBox<String>();
+		
+		//create ComboBox
+		temp = new JComboBox<String>();
 		temp.addItem("Cold");
 		temp.addItem("Cool");
 		temp.addItem("Normal");
@@ -54,7 +63,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		//set up the panels
 		centrePanel = new JPanel(); 
-		southPanel  =  new JPanel();
+		southPanel  = new JPanel();
 		northPanel  = new JPanel();
 		
 		//interface color
@@ -94,76 +103,70 @@ public class Interface extends JFrame implements ActionListener {
 		add(centrePanel, BorderLayout.CENTER);
 		add(southPanel, BorderLayout.SOUTH);
 		setVisible(true);
-		//setVisible(false);
-		
-		System.out.println("a: "+ac+ " c: "+c+" sT: "+sT+" dZ: "+dZ+" t: "+t);
-
-		
+				
 	}//end constructor
 	
 	
-	
-
-	@Override
+	//actionPerformed method
 	public void actionPerformed(ActionEvent event) {
 		
-		if(event.getSource() == aches)
-		{
+		if(event.getSource() == aches){
 			if( ac == "no")
 				ac="yes";
 			else
 				ac="no";
-		}
-		if(event.getSource() == cough)
-		{
+		}//end for aches event
+		
+		if(event.getSource() == cough){
 			if( c == "no")
 				c="yes";
 			else
 				c="no";
-			
-		}
-		if(event.getSource() == soreThroat)
-		{
+		}//end for cough event
+		
+		if(event.getSource() == soreThroat){
 			if( sT == "no")
 				sT="yes";
 			else
 				sT="no";
-		}
-		if(event.getSource() == dangerZone)
-		{
+		}//end for soreTroat event
+		
+		if(event.getSource() == dangerZone){
 			if( dZ == "no")
 				dZ="yes";
 			else
 				dZ="no";
-			
-		}
-		if(event.getSource() == temp)
-		{
+		}//end for dangerZone event
+		
+		if(event.getSource() == temp){
 			t = (String) temp.getSelectedItem();
+		}//end for temp event
+		
+		if(event.getSource() == test){
 			
-		}
-		if(event.getSource() == test)
-		{
-			System.out.println("a: "+ac+ " c: "+c+" sT: "+sT+" dZ: "+dZ+" t: "+t); //delete it
-			
+			//create new object based on user input
 			Data input = new Data(t.toLowerCase(),ac,c,sT,dZ);
 			
+			//read the file
 			ArrayList<Data> values = new ArrayList<Data>(100);
 			FileManager myFile = new FileManager("MLdata.txt");
-			myFile.connectToFile();
 			values = myFile.readFile();
 			
+			//calculate the prediction
 			NaiveBayes data = new NaiveBayes(input, values);
 			
+			//display the diagnose
 			JOptionPane.showMessageDialog(this, "You have "+ df.format(data.calculateAll())+"% chances of having COVID-19");
-			
-		}
-		if(event.getSource() == testAccuracy)
-		{
-			TrainingTesting test = new TrainingTesting();
-			JOptionPane.showMessageDialog(this, "The program has  "+df.format(test.testAccuracy())+"% accuracy.");
-		}
+		}//end for test event
 		
-	}
+		if(event.getSource() == testAccuracy){
+			//create new object for TrainingTesting
+			TrainingTesting test = new TrainingTesting();
+			
+			//display the accuracy
+			JOptionPane.showMessageDialog(this, "The program has  "+df.format(test.testAccuracy())+"% accuracy.");
+		}//end for testAccuracy event
+		
+	}//end actionPerformed method
 	
-}
+}//end Interface class

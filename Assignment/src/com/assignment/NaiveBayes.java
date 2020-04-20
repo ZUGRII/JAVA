@@ -1,3 +1,11 @@
+/* NaiveBayes Class 
+ * 
+ * Author: Georgiana Zugravu
+ * Student Number: C18768301
+ * Start date: 6th April 2020
+ * Due date: 20th April 2020
+ * Coordinator : Susan McKeever 
+ */
 package com.assignment;
 
 import java.util.ArrayList;
@@ -5,14 +13,14 @@ import java.util.ArrayList;
 public class NaiveBayes {
 	
 	//attributes
-	Data input;
-	ArrayList<Data> values;
+	private Data input;
+	private ArrayList<Data> values;
 	
 	//Constructor
 	public NaiveBayes(Data input, ArrayList<Data> values) {
 		this.input = input;
 		this.values = values;
-	}
+	}//end constructor
 	
 	
 	//Calculate has_covid19 (Yes/No) probability
@@ -26,11 +34,10 @@ public class NaiveBayes {
 	      }
 		
 		return yesTotal /values.size();
-		
-	}
+	}//end the calculation for yes/no probability
 	
 	
-	//////Calculate for each if covid19 = yes/no
+	//////Calculate for all if covid19 = yes/no
 	double probability(String yesOrNo)
 	{
 		double temp = 0;
@@ -65,16 +72,32 @@ public class NaiveBayes {
 				{
 					dangerZ++;
 				}	
-			}
-		}
+			}//end if yes/no
+		}//end for loop
 		
-		return ((temp/yesTotal)+1)*(aches/yesTotal)*(cough/yesTotal)*(soreT/yesTotal)*(dangerZ/yesTotal);
-	}
+		//division validation
+		if(temp == 0) temp++;
+		else temp=temp/yesTotal;
+		
+		if(aches == 0) aches++;
+		else aches=aches/yesTotal;
+		
+		if(cough == 0) cough++;
+		else cough=cough/yesTotal;
+		
+		if(soreT == 0) soreT++;
+		else soreT=soreT/yesTotal;
+		
+		if(dangerZ == 0) dangerZ++;
+		else dangerZ=dangerZ/yesTotal;
+		
+		return temp*aches*cough*soreT*dangerZ;
+	}//end probability
 	
 	//calculate all
 	double calculateAll()
 	{
 		return probability("yes")*yesOrNoProbability("yes")/((probability("yes")*yesOrNoProbability("yes"))+(probability("no")*yesOrNoProbability("no")))*100;
-	}
+	}//end calculation
 
-}
+}//end NaiveBayes class

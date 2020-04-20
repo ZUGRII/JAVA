@@ -1,3 +1,11 @@
+/* Data class 
+ * 
+ * Author: Georgiana Zugravu
+ * Student Number: C18768301
+ * Start date: 6th April 2020
+ * Due date: 20th April 2020
+ * Coordinator : Susan McKeever 
+ */
 package com.assignment;
 
 public class Data {
