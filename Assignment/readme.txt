@@ -11,3 +11,4 @@ By pressing Test Accuracy button, class TrainingTesting is called (by an object)
 If I will have more time to improve it, I could make the GUI to look better and to insert the database from GUI (to browse for it).   
 
  github:https://github.com/ZUGRII/JAVA
+ demo video: https://youtu.be/wzoCod8eqaE
