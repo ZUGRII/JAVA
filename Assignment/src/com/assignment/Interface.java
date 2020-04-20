@@ -1,6 +1,7 @@
 package com.assignment;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -55,9 +56,18 @@ public class Interface extends JFrame implements ActionListener {
 		centrePanel = new JPanel(); 
 		southPanel  =  new JPanel();
 		northPanel  = new JPanel();
-		westPanel	= new JPanel();
-		eastPanel 	= new JPanel();
 		
+		//interface color
+		northPanel.setBackground(new Color(255,206,91));
+		southPanel.setBackground(new Color(255,206,91));
+		centrePanel.setBackground(Color.white);
+		aches.setBackground(Color.white);
+		cough.setBackground(Color.white);
+		soreThroat.setBackground(Color.white);
+		dangerZone.setBackground(Color.white);
+		test.setBackground(new Color(206,178,255));
+		testAccuracy.setBackground(new Color(206,178,255));
+		temp.setBackground(new Color(242,219,255));
 		
 		//attach the listener to the button
 		aches.addActionListener(this);
@@ -79,8 +89,7 @@ public class Interface extends JFrame implements ActionListener {
 		southPanel.add(test);
 		southPanel.add(testAccuracy);
 		
-		add(eastPanel, BorderLayout.EAST);
-		add(westPanel, BorderLayout.WEST);
+		
 		add(northPanel, BorderLayout.NORTH);
 		add(centrePanel, BorderLayout.CENTER);
 		add(southPanel, BorderLayout.SOUTH);
