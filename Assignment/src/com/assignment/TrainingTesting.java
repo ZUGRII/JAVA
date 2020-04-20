@@ -9,7 +9,10 @@ public class TrainingTesting {
 	ArrayList<Data> values;
 	ArrayList<Data> train;
 	ArrayList<Data> test;
-	ArrayList<Integer> random; 
+	ArrayList<Integer> random;
+	private String[] covid = new String[100];;
+	private int accuracy = 0;
+	int i ;
 	
 	//Constructor
 	public TrainingTesting() 
@@ -23,7 +26,6 @@ public class TrainingTesting {
 		values = myFile.readFile();
 		
 		//random values
-		int i=0;
 		while(i< values.size()*70/100)
 		{
 			Random randomgen = new Random();
@@ -37,10 +39,6 @@ public class TrainingTesting {
 				random.add(r);
 				i++;
 			}
-			
-			System.out.println("values.size(): "+values.size());
-			System.out.println("i:"+i);
-			System.out.println("Random: "+random);
 			
 		}
 		
@@ -58,15 +56,40 @@ public class TrainingTesting {
 		}
 		
 		
-		
 	}//end constructor
 	
+	public double testAccuracy()
+	{
+		//call NaiveBayes
+		for(i = 0; i<test.size(); i++ )
+		{
+				
+			NaiveBayes data = new NaiveBayes(test.get(i), train);
+			
+			if(Double.valueOf(data.calculateAll()) > 50)
+    		{
+				 covid[i] = "yes";
+			}
+			else
+			{
+				 covid[i] = "no";
+			}
+		}
 		
+		//calculate accuracy
+		for(i=0; i< 23; i++)
+		{
+			if(covid[i].equals(test.get(i).getHasCovid19()))
+			{
+				accuracy++;
+			}
+				
+		}
+		
+		
+		//return the percentage
+		return (double)accuracy/23*100;
+		
+	}//end testAccuracy
 		
 }//end class
-	
-		
-		
-	
-	
-	

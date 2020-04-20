@@ -3,6 +3,8 @@ package com.assignment;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,12 +18,14 @@ public class Interface extends JFrame implements ActionListener {
 	
 	//attributes
 	//JButton temperature;
-	String t, ac="no", c="no", sT="no", dZ="no";
+	String t="cold", ac="no", c="no", sT="no", dZ="no";
 	JButton test, testAccuracy; 
 	JCheckBox aches, cough, soreThroat, dangerZone;
 	JLabel welcome, temperature;
 	JPanel centrePanel, northPanel, southPanel, westPanel, eastPanel;
 	JComboBox<String> temp; 
+	
+	DecimalFormat df = new DecimalFormat("#.##"); 
 	
 	//Constructor
 	public Interface (String myTitle) {
@@ -131,17 +135,24 @@ public class Interface extends JFrame implements ActionListener {
 		}
 		if(event.getSource() == test)
 		{
-			System.out.println("a: "+ac+ " c: "+c+" sT: "+sT+" dZ: "+dZ+" t: "+t);
+			System.out.println("a: "+ac+ " c: "+c+" sT: "+sT+" dZ: "+dZ+" t: "+t); //delete it
+			
 			Data input = new Data(t.toLowerCase(),ac,c,sT,dZ);
-			NaiveBayes data = new NaiveBayes(input);
-			String covid = data.calculateAll();
-			JOptionPane.showMessageDialog(this, "You have "+covid+"chances of having COVID-19");
-			System.out.println("You have "+covid+"chances of having COVID-19");
-			//System.out.println(data.toString());
+			
+			ArrayList<Data> values = new ArrayList<Data>(100);
+			FileManager myFile = new FileManager("MLdata.txt");
+			myFile.connectToFile();
+			values = myFile.readFile();
+			
+			NaiveBayes data = new NaiveBayes(input, values);
+			
+			JOptionPane.showMessageDialog(this, "You have "+ df.format(data.calculateAll())+"% chances of having COVID-19");
+			
 		}
 		if(event.getSource() == testAccuracy)
 		{
-			
+			TrainingTesting test = new TrainingTesting();
+			JOptionPane.showMessageDialog(this, "The program has  "+df.format(test.testAccuracy())+"% accuracy.");
 		}
 		
 	}

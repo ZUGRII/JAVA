@@ -1,6 +1,5 @@
 package com.assignment;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class NaiveBayes {
@@ -10,13 +9,9 @@ public class NaiveBayes {
 	ArrayList<Data> values;
 	
 	//Constructor
-	public NaiveBayes(Data input) {
+	public NaiveBayes(Data input, ArrayList<Data> values) {
 		this.input = input;
-		
-		values = new ArrayList<Data>(100);
-		FileManager myFile = new FileManager("MLdata.txt");
-		myFile.connectToFile();
-		values = myFile.readFile();
+		this.values = values;
 	}
 	
 	
@@ -77,10 +72,9 @@ public class NaiveBayes {
 	}
 	
 	//calculate all
-	String calculateAll()
+	double calculateAll()
 	{
-		DecimalFormat df = new DecimalFormat("#.##"); 
-		return df.format(probability("yes")*yesOrNoProbability("yes")/((probability("yes")*yesOrNoProbability("yes"))+(probability("no")*yesOrNoProbability("no")))*100);
+		return probability("yes")*yesOrNoProbability("yes")/((probability("yes")*yesOrNoProbability("yes"))+(probability("no")*yesOrNoProbability("no")))*100;
 	}
 
 }
